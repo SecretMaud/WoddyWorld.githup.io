@@ -122,6 +122,29 @@
             z-index: 3; /* Обеспечивает видимость кнопки поверх других элементов */
             transition: left 0.3s ease;
         }
+
+        /* Медиазапросы для адаптивного дизайна */
+        @media (max-width: 600px) {
+            nav {
+                width: 100%;
+                height: auto;
+                position: relative;
+                left: 0;
+            }
+
+            .toggle-btn {
+                left: 0;
+            }
+
+            header, main, .modal-content {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .top-right {
+                width: 50px; /* Уменьшение ширины изображения на мобильных устройствах */
+            }
+        }
     </style>
     <script>
         function toggleNav() {
@@ -178,7 +201,8 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <div class="rules">
-             <p><strong>Основные правила.</strong></p>
+                       </div>
+ <p><strong>Основные правила.</strong></p>
 
 <p><strong>Пункт 1.1</strong> - Начав играть на наших серверах, Вы автоматически подтверждаете своё согласие с данным сводом правил.</p>
 
@@ -415,7 +439,6 @@
 <p><strong>Пункт 6.8</strong> - Модератор не имеет право обсуждать политику, провоцировать конфликты, показывать свое политическое мнение</p>
 <p>➤ Наказание: Варн</p>
 
-            </div>
         </div>
     </div>
 </body>
