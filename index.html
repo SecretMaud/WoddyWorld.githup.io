@@ -21,11 +21,11 @@
             display: flex; /* Использование flexbox для выравнивания */
             flex-direction: column; /* Вертикальное расположение */
             justify-content: flex-start; /* Выравнивание элементов слева */
-            width: 150px; /* Уменьшена ширина */
+            width: 120px; /* Уменьшена ширина */
             height: 100vh; /* Удлинение вниз */
             position: fixed;
             top: 0;
-            left: -150px; /* Скрываем навигационный блок */
+            left: -120px; /* Скрываем навигационный блок */
             z-index: 2; /* Обеспечивает видимость поверх другого контента */
             transition: left 0.3s ease;
         }
@@ -113,45 +113,41 @@
         .toggle-btn {
             position: fixed;
             top: 20px;
-            left: 10px;
+            left: 0;
             background-color: #4f4f4f;
             color: #ffffff;
             border: none;
             padding: 10px;
             cursor: pointer;
             z-index: 3; /* Обеспечивает видимость кнопки поверх других элементов */
-        }
-
-        .toggle-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 2;
-            transition: transform 0.3s ease;
-        }
-
-        .hidden {
-            transform: translateX(-150px); /* Скрыть навигационный блок */
+            transition: left 0.3s ease;
         }
     </style>
     <script>
         function toggleNav() {
-            var container = document.querySelector('.toggle-container');
-            container.classList.toggle('hidden');
+            var nav = document.querySelector('nav');
+            var toggleBtn = document.querySelector('.toggle-btn');
+            if (nav.style.left === '-120px') {
+                nav.style.left = '0';
+                toggleBtn.style.left = '120px'; /* Перемещает кнопку вместе с навигацией */
+                toggleBtn.innerHTML = '&#9664;'; /* Изменяет стрелку на левую */
+            } else {
+                nav.style.left = '-120px';
+                toggleBtn.style.left = '0';
+                toggleBtn.innerHTML = '&#9654;'; /* Изменяет стрелку на правую */
+            }
         }
     </script>
 </head>
 <body>
-    <div class="toggle-container hidden">
-        <button class="toggle-btn" onclick="toggleNav()">&#9654;</button> <!-- Кнопка-стрелка -->
-        <nav>
-            <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
-            <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
-            <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></p>
-            <p><a href="https://woddyWorld.easydonate.ru">Донаты</a></p>
-            <button onclick="showModal()">Правила</button>
-        </nav>
-    </div>
+    <button class="toggle-btn" onclick="toggleNav()">&#9654;</button> <!-- Кнопка-стрелка -->
+    <nav>
+        <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
+        <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
+        <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></p>
+        <p><a href="https://woddyWorld.easydonate.ru">Донаты</a></p>
+        <button onclick="showModal()">Правила</button>
+    </nav>
     <div class="content">
         <header>
             <h1>Добро пожаловать на официальный сайт WoddyWorld, мы так рады тебя видеть!</h1>
@@ -160,4 +156,17 @@
             <p>Информация</p>
             <p>Добавьте сюда свой контент.</p>
             <img src="Long.png" alt="Long.png" class="top-right">
-        </main
+        </main>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="rules">
+                <!-- Здесь будет текст правил -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
