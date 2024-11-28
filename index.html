@@ -12,7 +12,6 @@
             color: #ffffff; /* Белый текст для контраста */
             margin: 0;
             padding: 0;
-            display: flex;
         }
 
         nav {
@@ -35,6 +34,7 @@
         .content {
             flex-grow: 1;
             padding: 20px;
+            position: relative; /* Необходимо для позиционирования картинки */
         }
 
         header {
@@ -52,44 +52,4 @@
         }
 
         #additionalText {
-            display: none; /* Скрываем текст по умолчанию */
-            margin-top: 20px;
-        }
-
-        button {
-            background-color: #4f4f4f;
-            color: #ffffff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-    </style>
-    <script>
-        function showText() {
-            document.getElementById('additionalText').style.display = 'block';
-        }
-    </script>
-</head>
-<body>
-    <nav>
-        <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
-        <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
-        <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></p>
-        <p><a href="https://woddyWorld.easydonate.ru">Донаты</a></p>
-        <button onclick="showText()">Правила</button>
-    </nav>
-    <div class="content">
-        <header>
-            <h1>Добро пожаловать на официальный сайт WoddyWorld, мы так рады тебя видеть!</h1>
-        </header>
-        <main>
-            <p>Информация</p>
-            <p>Добавьте сюда свой контент.</p>
-            <div id="additionalText">
-                <p>Это дополнительный текст, который появляется при нажатии на кнопку "Правила".</p>
-            </div>
-        </main>
-    </div>
-</body>
-</html>
+            display
