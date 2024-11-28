@@ -23,6 +23,10 @@
             justify-content: flex-start; /* Выравнивание элементов слева */
             width: 120px; /* Уменьшена ширина */
             height: 100vh; /* Удлинение вниз */
+            position: fixed;
+            top: 0;
+            left: -150px; /* Скрываем навигационный блок */
+            transition: left 0.3s ease;
         }
 
         a {
@@ -61,13 +65,11 @@
         }
 
         .top-right {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 105px; /* Установите нужную ширину */
-    height: auto; /* Автоматически подгоняет высоту */
-}
-
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 110px; /* Установите нужную ширину */
+            height: auto; /* Автоматически подгоняет высоту */
         }
 
         .modal {
@@ -106,24 +108,31 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        .toggle-btn {
+            position: fixed;
+            top: 20px;
+            left: 10px;
+            background-color: #4f4f4f;
+            color: #ffffff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
     </style>
     <script>
-        function showModal() {
-            document.getElementById('myModal').style.display = "block";
-        }
-
-        function closeModal() {
-            document.getElementById('myModal').style.display = "none";
-        }
-
-        window.onclick = function(event) {
-            if (event.target == document.getElementById('myModal')) {
-                closeModal();
+        function toggleNav() {
+            var nav = document.querySelector('nav');
+            if (nav.style.left === '-150px') {
+                nav.style.left = '0';
+            } else {
+                nav.style.left = '-150px';
             }
         }
     </script>
 </head>
 <body>
+    <button class="toggle-btn" onclick="toggleNav()">&#9654;</button> <!-- Кнопка-стрелка -->
     <nav>
         <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
         <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
@@ -147,7 +156,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <div class="rules">
-            <p><strong>Основные правила.</strong></p>
+             <p><strong>Основные правила.</strong></p>
 
 <p><strong>Пункт 1.1</strong> - Начав играть на наших серверах, Вы автоматически подтверждаете своё согласие с данным сводом правил.</p>
 
@@ -253,7 +262,6 @@
 
 <p><strong>Пункт 2.8</strong> - Запрещено разговаривать/спорить/обсуждать любую страну и политику страны в негативном формате. Мы не хотим оскорбить кого либо, как у всех есть своё мнение на это.</p>
 <p>➤ Наказание: блокировка чата сроком на 10 минут.</p>
-
             </div>
         </div>
     </div>
