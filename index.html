@@ -50,7 +50,25 @@
             padding: 40px; /* Увеличено пространство для текста */
             min-height: 70vh; /* Минимальная высота для большего пространства */
         }
+
+        #additionalText {
+            display: none; /* Скрываем текст по умолчанию */
+            margin-top: 20px;
+        }
+
+        button {
+            background-color: #4f4f4f;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
     </style>
+    <script>
+        function showText() {
+            document.getElementById('additionalText').style.display = 'block';
+        }
+    </script>
 </head>
 <body>
     <nav>
@@ -65,8 +83,4 @@
         </header>
         <main>
             <p>Информация</p>
-            <p>Добавьте сюда свой контент.</p>
-        </main>
-    </div>
-</body>
-</html>
+            <p
