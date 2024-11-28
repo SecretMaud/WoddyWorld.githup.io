@@ -15,20 +15,21 @@
         }
 
         nav {
-            background-color: #4f4f4f;
-            padding: 10px;
-            text-align: left; /* Перенос текста влево */
-            display: flex; /* Использование flexbox для выравнивания */
-            flex-direction: column; /* Вертикальное расположение */
-            justify-content: flex-start; /* Выравнивание элементов слева */
-            width: 120px; /* Уменьшена ширина */
-            height: 100vh; /* Удлинение вниз */
-            position: fixed;
-            top: 0;
-            left: -120px; /* Скрываем навигационный блок */
-            z-index: 2; /* Обеспечивает видимость поверх другого контента */
-            transition: left 0.3s ease;
-        }
+    background-color: #4f4f4f;
+    padding: 10px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 120px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -160px; /* Скрываем навигационный блок за пределы видимости */
+    z-index: 2; /* Обеспечивает видимость поверх другого контента */
+    transition: left 0.3s ease;
+}
+
 
         a {
             color: #ffff00; /* Жёлтый цвет ссылок */
@@ -111,32 +112,34 @@
         }
 
         .toggle-btn {
-            position: fixed;
-            top: 20px;
-            left: 0;
-            background-color: #4f4f4f;
-            color: #ffffff;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            z-index: 3; /* Обеспечивает видимость кнопки поверх других элементов */
-            transition: left 0.3s ease;
-        }
+    position: fixed;
+    top: 20px;
+    left: 0;
+    background-color: #4f4f4f;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 3; /* Обеспечивает видимость кнопки поверх других элементов */
+    transition: left 0.3s ease;
+}
+
     </style>
     <script>
         function toggleNav() {
-            var nav = document.querySelector('nav');
-            var toggleBtn = document.querySelector('.toggle-btn');
-            if (nav.style.left === '-120px') {
-                nav.style.left = '0';
-                toggleBtn.style.left = '120px'; /* Перемещает кнопку вместе с навигацией */
-                toggleBtn.innerHTML = '&#9664;'; /* Изменяет стрелку на левую */
-            } else {
-                nav.style.left = '-120px';
-                toggleBtn.style.left = '0';
-                toggleBtn.innerHTML = '&#9654;'; /* Изменяет стрелку на правую */
-            }
-        }
+    var nav = document.querySelector('nav');
+    var toggleBtn = document.querySelector('.toggle-btn');
+    if (nav.style.left === '-160px') {
+        nav.style.left = '0';
+        toggleBtn.style.left = '120px'; /* Перемещает кнопку вместе с навигацией */
+        toggleBtn.innerHTML = '&#9664;'; /* Изменяет стрелку на левую */
+    } else {
+        nav.style.left = '-160px';
+        toggleBtn.style.left = '0';
+        toggleBtn.innerHTML = '&#9654;'; /* Изменяет стрелку на правую */
+    }
+}
+
     </script>
 </head>
 <body>
