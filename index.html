@@ -12,45 +12,52 @@
             color: #ffffff; /* Белый текст для контраста */
             margin: 0;
             padding: 0;
+            display: flex;
         }
 
         header {
             background-color: #4f4f4f;
             padding: 20px;
             text-align: center;
+            width: 100%;
         }
 
         main {
             background-color: #a9a9a9; /* Светло-серый цвет */
             padding: 40px; /* Увеличено пространство для текста */
             min-height: 70vh; /* Минимальная высота для большего пространства */
+            flex-grow: 1;
         }
 
-        footer {
+        nav {
             background-color: #4f4f4f;
             padding: 10px;
             text-align: left; /* Перенос текста влево */
             display: flex; /* Использование flexbox для выравнивания */
+            flex-direction: column; /* Вертикальное расположение */
             justify-content: flex-start; /* Выравнивание элементов слева */
         }
 
         a {
             color: #ffff00; /* Жёлтый цвет ссылок */
             text-decoration: none; /* Удалить подчеркивание */
+            margin-bottom: 10px; /* Добавим отступ снизу */
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Добро пожаловать на официальный сайт WoddyWorld, мы так рады тебя видеть!</h1>
-    </header>
-    <main>
-        <p>Информация</p>
-        <p>Добавьте сюда свой контент.</p>
-    </main>
-    <footer>
+    <nav>
         <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
         <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
-    </footer>
+    </nav>
+    <div>
+        <header>
+            <h1>Добро пожаловать на официальный сайт WoddyWorld, мы так рады тебя видеть!</h1>
+        </header>
+        <main>
+            <p>Информация</p>
+            <p>Добавьте сюда свой контент.</p>
+        </main>
+    </div>
 </body>
 </html>
