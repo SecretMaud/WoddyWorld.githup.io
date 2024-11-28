@@ -15,20 +15,6 @@
             display: flex;
         }
 
-        header {
-            background-color: #4f4f4f;
-            padding: 20px;
-            text-align: center;
-            width: 100%;
-        }
-
-        main {
-            background-color: #a9a9a9; /* Светло-серый цвет */
-            padding: 40px; /* Увеличено пространство для текста */
-            min-height: 70vh; /* Минимальная высота для большего пространства */
-            flex-grow: 1;
-        }
-
         nav {
             background-color: #4f4f4f;
             padding: 10px;
@@ -43,6 +29,24 @@
             text-decoration: none; /* Удалить подчеркивание */
             margin-bottom: 10px; /* Добавим отступ снизу */
         }
+
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #4f4f4f;
+            padding: 20px;
+            text-align: center;
+            width: 100%;
+        }
+
+        main {
+            background-color: #a9a9a9; /* Светло-серый цвет */
+            padding: 40px; /* Увеличено пространство для текста */
+            min-height: 70vh; /* Минимальная высота для большего пространства */
+        }
     </style>
 </head>
 <body>
@@ -50,7 +54,7 @@
         <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
         <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
     </nav>
-    <div>
+    <div class="content">
         <header>
             <h1>Добро пожаловать на официальный сайт WoddyWorld, мы так рады тебя видеть!</h1>
         </header>
