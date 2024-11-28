@@ -21,11 +21,11 @@
             display: flex; /* Использование flexbox для выравнивания */
             flex-direction: column; /* Вертикальное расположение */
             justify-content: flex-start; /* Выравнивание элементов слева */
-            width: 120px; /* Уменьшена ширина */
+            width: 150px; /* Уменьшена ширина */
             height: 100vh; /* Удлинение вниз */
             position: fixed;
             top: 0;
-            left: -120px; /* Скрываем навигационный блок */
+            left: -150px; /* Скрываем навигационный блок */
             z-index: 2; /* Обеспечивает видимость поверх другого контента */
             transition: left 0.3s ease;
         }
@@ -121,27 +121,37 @@
             cursor: pointer;
             z-index: 3; /* Обеспечивает видимость кнопки поверх других элементов */
         }
+
+        .toggle-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .hidden {
+            transform: translateX(-150px); /* Скрыть навигационный блок */
+        }
     </style>
     <script>
         function toggleNav() {
-            var nav = document.querySelector('nav');
-            if (nav.style.left === '-120px') {
-                nav.style.left = '0';
-            } else {
-                nav.style.left = '-120px';
-            }
+            var container = document.querySelector('.toggle-container');
+            container.classList.toggle('hidden');
         }
     </script>
 </head>
 <body>
-    <button class="toggle-btn" onclick="toggleNav()">&#9654;</button> <!-- Кнопка-стрелка -->
-    <nav>
-        <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
-        <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
-        <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></p>
-        <p><a href="https://woddyWorld.easydonate.ru">Донаты</a></p>
-        <button onclick="showModal()">Правила</button>
-    </nav>
+    <div class="toggle-container hidden">
+        <button class="toggle-btn" onclick="toggleNav()">&#9654;</button> <!-- Кнопка-стрелка -->
+        <nav>
+            <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
+            <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
+            <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></p>
+            <p><a href="https://woddyWorld.easydonate.ru">Донаты</a></p>
+            <button onclick="showModal()">Правила</button>
+        </nav>
+    </div>
     <div class="content">
         <header>
             <h1>Добро пожаловать на официальный сайт WoddyWorld, мы так рады тебя видеть!</h1>
@@ -150,17 +160,4 @@
             <p>Информация</p>
             <p>Добавьте сюда свой контент.</p>
             <img src="Long.png" alt="Long.png" class="top-right">
-        </main>
-    </div>
-
-    <!-- Модальное окно -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <div class="rules">
-                <!-- Здесь будет текст правил -->
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+        </main
