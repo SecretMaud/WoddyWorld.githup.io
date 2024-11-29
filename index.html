@@ -56,7 +56,7 @@
 
         main {
             background-color: rgba(169, 169, 169, 0.8); /* Полупрозрачный фон */
-            padding: 20px; /* Увеличено пространство для текста */
+            padding: 40px; /* Увеличено пространство для текста */
             flex-grow: 1; /* Увеличение пространства для основного контента */
         }
 
@@ -67,14 +67,6 @@
             padding: 10px 20px;
             cursor: pointer;
             margin-bottom: 10px; /* Отступ снизу для кнопок */
-        }
-
-        .top-right {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 50px; /* Уменьшение ширины на мобильных устройствах */
-            height: auto; /* Автоматически подгоняет высоту */
         }
 
         .modal {
@@ -148,13 +140,24 @@
                 top: 20px;
             }
 
-            header, main, .modal-content {
-                width: 90%;
+            header {
                 padding: 10px;
+                text-align: center;
+                margin: 0 auto; /* Центрирование блока */
             }
 
-            .top-right {
-                width: 50px; /* Уменьшение ширины на мобильных устройствах */
+            header h1 {
+                font-size: 1.5em; /* Уменьшаем размер текста для мобильных устройств */
+            }
+
+            main {
+                width: 90%;
+                padding: 20px; /* Уменьшение отступов для мобильных устройств */
+            }
+
+            .modal-content {
+                width: 90%;
+                padding: 10px;
             }
         }
     </style>
@@ -203,7 +206,6 @@
         <main>
             <п>Информация</п>
             <п>Добавьте сюда свой контент.</п>
-            <img src="Long.png" alt="Long.png" class="top-right">
         </main>
     </div>
 
