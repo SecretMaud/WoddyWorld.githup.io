@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Официальный сайт WoddyWorld</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
     <style>
         body {
             background: linear-gradient(to bottom, #000000, #ffff00, #8b4513); /* Переход от черного к желтому и коричневому */
@@ -123,6 +122,16 @@
             transition: left 0.3s ease;
         }
 
+        .gradient-text {
+            background: linear-gradient(to right, yellow, red);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .highlight {
+            color: #ffff00; /* Жёлтый цвет для слова "WoddyWorld" */
+        }
+
         /* Медиазапросы для адаптивного дизайна */
         @media (max-width: 600px) {
             nav {
@@ -161,17 +170,18 @@
             }
         }
 
-        function showModal() {
-            document.getElementById('myModal').style.display = "block";
-        }
-
-        function closeModal() {
-            document.getElementById('myModal').style.display = "none";
+        function toggleModal() {
+            var modal = document.getElementById('myModal');
+            if (modal.style.display === "block") {
+                modal.style.display = "none";
+            } else {
+                modal.style.display = "block";
+            }
         }
 
         window.onclick = function(event) {
             if (event.target == document.getElementById('myModal')) {
-                closeModal();
+                toggleModal();
             }
         }
     </script>
@@ -180,18 +190,18 @@
     <button class="toggle-btn" onclick="toggleNav()">&#9654;</button> <!-- Кнопка-стрелка -->
     <nav>
         <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
-        <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
-        <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></p>
-        <p><a href="https://woddyWorld.easydonate.ru">Донаты</a></p>
-        <button onclick="showModal()">Правила</button>
+        <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></п>
+        <п><а href="https://discord.gg/TKTTHKRn">Наш Дискорд</а></п>
+        <п><а href="https://woddyWorld.easydonate.ru">Донаты</а></п>
+        <button onclick="toggleModal()">Правила</button>
     </nav>
     <div class="content">
         <header>
-            <h1>Добро пожаловать на официальный сайт WoddyWorld, мы так рады тебя видеть!</h1>
+            <h1 class="gradient-text">Добро пожаловать на официальный сайт <span class="highlight">WoddyWorld</span>, мы так рады тебя видеть!</h1>
         </header>
         <main>
-            <p>Информация</p>
-            <p>Добавьте сюда свой контент.</p>
+            <p>Информация</п>
+            <п>Добавьте сюда свой контент.</п>
             <img src="Long.png" alt="Long.png" class="top-right">
         </main>
     </div>
@@ -199,9 +209,9 @@
     <!-- Модальное окно -->
     <div id="myModal" class="modal">
         <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
+            <span class="close" onclick="toggleModal()">&times;</span>
             <div class="rules">
-                       </div>
+            </div>
         </div>
     </div>
 </body>
