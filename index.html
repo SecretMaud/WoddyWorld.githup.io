@@ -20,11 +20,11 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            width: 120px;
-            height: 100vh;
+            width: 100%;
+            height: auto;
             position: fixed;
             top: 0;
-            left: -160px; /* Скрываем навигационный блок за пределы видимости */
+            left: -100%;
             z-index: 2; /* Обеспечивает видимость поверх другого контента */
             transition: left 0.3s ease;
         }
@@ -44,13 +44,12 @@
         header {
             padding: 10px; /* Уменьшено пространство */
             text-align: center;
-            width: 80%; /* Уменьшена ширина */
             margin: 0 auto; /* Центрирование блока */
         }
 
         main {
             background-color: #a9a9a9; /* Светло-серый цвет */
-            padding: 40px; /* Увеличено пространство для текста */
+            padding: 20px; /* Увеличено пространство для текста */
             min-height: 70vh; /* Минимальная высота для большего пространства */
         }
 
@@ -67,7 +66,7 @@
             position: absolute;
             top: 10px;
             right: 10px;
-            width: 100px; /* Установите нужную ширину */
+            width: 50px; /* Уменьшение ширины на мобильных устройствах */
             height: auto; /* Автоматически подгоняет высоту */
         }
 
@@ -90,7 +89,7 @@
             margin: 5% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 80%;
+            width: 90%; /* Увеличение ширины на мобильных устройствах */
             color: #ffffff;
         }
 
@@ -131,13 +130,11 @@
             color: #ffffff; /* Белый цвет для слова "WoddyWorld" */
         }
 
-        /* Медиазапросы для адаптивного дизайна */
         @media (max-width: 600px) {
             nav {
-                width: 100%;
+                left: -100%;
                 height: auto;
-                position: relative;
-                left: 0;
+                transition: left 0.3s ease;
             }
 
             .toggle-btn {
@@ -145,12 +142,12 @@
             }
 
             header, main, .modal-content {
-                width: 100%;
+                width: 90%;
                 padding: 10px;
             }
 
             .top-right {
-                width: 50px; /* Уменьшение ширины изображения на мобильных устройствах */
+                width: 50px; /* Уменьшение ширины на мобильных устройствах */
             }
         }
     </style>
@@ -158,12 +155,12 @@
         function toggleNav() {
             var nav = document.querySelector('nav');
             var toggleBtn = document.querySelector('.toggle-btn');
-            if (nav.style.left === '-160px') {
+            if (nav.style.left === '-100%') {
                 nav.style.left = '0';
                 toggleBtn.style.left = '120px'; /* Перемещает кнопку вместе с навигацией */
                 toggleBtn.innerHTML = '&#9664;'; /* Изменяет стрелку на левую */
             } else {
-                nav.style.left = '-160px';
+                nav.style.left = '-100%';
                 toggleBtn.style.left = '0';
                 toggleBtn.innerHTML = '&#9654;'; /* Изменяет стрелку на правую */
             }
@@ -190,8 +187,8 @@
     <nav>
         <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
         <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
-        <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></p>
-        <p><a href="https://woddyworld.easydonate.ru">Донаты</a></p>
+        <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></п>
+        <п><а href="https://woddyworld.easydonate.ru">Донаты</а></п>
         <button onclick="toggleModal()">Правила</button>
     </nav>
     <div class="content">
@@ -199,8 +196,8 @@
             <h1 class="gradient-text">Добро пожаловать на официальный сайт <span class="highlight">WoddyWorld</span>, мы так рады тебя видеть!</h1>
         </header>
         <main>
-            <p>Информация</p>
-            <p>Добавьте сюда свой контент.</p>
+            <п>Информация</п>
+            <п>Добавьте сюда свой контент.</п>
             <img src="Long.png" alt="Long.png" class="top-right">
         </main>
     </div>
