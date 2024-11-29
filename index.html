@@ -30,6 +30,7 @@
             left: 0;
             z-index: 2; /* Обеспечивает видимость поверх другого контента */
             overflow-y: auto; /* Скроллинг по вертикали */
+            transition: transform 0.3s ease;
         }
 
         nav.open {
@@ -111,13 +112,18 @@
         .toggle-btn {
             position: fixed;
             top: 20px;
-            left: 10px; /* Перемещаем кнопку влево */
+            left: 0; /* Перемещаем кнопку влево */
             background-color: #4f4f4f;
             color: #ffffff;
             border: none;
             padding: 10px;
             cursor: pointer;
             z-index: 3; /* Обеспечивает видимость кнопки поверх других элементов */
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-btn.open {
+            transform: translateX(200px); /* Двигаем кнопку вместе с меню */
         }
 
         .gradient-text {
@@ -138,6 +144,11 @@
 
             .toggle-btn {
                 top: 20px;
+                left: 0;
+            }
+
+            .toggle-btn.open {
+                transform: translateX(200px); /* Двигаем кнопку вместе с меню */
             }
 
             header {
@@ -167,9 +178,11 @@
             var toggleBtn = document.querySelector('.toggle-btn');
             if (nav.classList.contains('open')) {
                 nav.classList.remove('open');
+                toggleBtn.classList.remove('open');
                 toggleBtn.innerHTML = '&#9658;'; /* Изменяет стрелку на вправо */
             } else {
                 nav.classList.add('open');
+                toggleBtn.classList.add('open');
                 toggleBtn.innerHTML = '&#9668;'; /* Изменяет стрелку на влево */
             }
         }
