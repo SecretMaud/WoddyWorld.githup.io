@@ -48,7 +48,7 @@
         }
 
         main {
-            background-color: transparent; /* Убираем цвет фона */
+            background-color: rgba(169, 169, 169, 0.8); /* Полупрозрачный фон */
             padding: 20px; /* Увеличено пространство для текста */
             min-height: 70vh; /* Минимальная высота для большего пространства */
         }
@@ -90,6 +90,8 @@
             padding: 20px;
             border: 1px solid #888;
             width: 90%; /* Увеличение ширины на мобильных устройствах */
+            max-height: 80vh; /* Ограничение высоты */
+            overflow-y: auto; /* Скроллинг по вертикали */
             color: #ffffff;
         }
 
@@ -185,10 +187,10 @@
 <body>
     <button class="toggle-btn" onclick="toggleNav()">&#9654;</button> <!-- Кнопка-стрелка -->
     <nav>
-        <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
-        <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
-        <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></p>
-        <p><a href="https://woddyworld.easydonate.ru">Донаты</a></p>
+        <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></п>
+        <п><а href="https://vk.com/mcwoddyworld">Наша группа ВК</а></п>
+        <п><а href="https://discord.gg/TKTTHKRn">Наш Дискорд</а></п>
+        <п><а href="https://woddyworld.easydonate.ru">Донаты</а></п>
         <button onclick="toggleModal()">Правила</button>
     </nav>
     <div class="content">
@@ -196,8 +198,8 @@
             <h1 class="gradient-text">Добро пожаловать на официальный сайт <span class="highlight">WoddyWorld</span>, мы так рады тебя видеть!</h1>
         </header>
         <main>
-            <p>Информация</p>
-            <p>Добавьте сюда свой контент.</p>
+            <п>Информация</п>
+            <п>Добавьте сюда свой контент.</п>
             <img src="Long.png" alt="Long.png" class="top-right">
         </main>
     </div>
