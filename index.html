@@ -20,13 +20,18 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            width: 100%;
-            height: 0;
+            width: 0;
+            height: 100vh;
+            overflow: hidden; /* Скрываем содержимое при закрытом меню */
             position: fixed;
             top: 0;
             left: 0;
             z-index: 2; /* Обеспечивает видимость поверх другого контента */
-            transition: height 0.3s ease;
+            transition: width 0.3s ease;
+        }
+
+        nav.open {
+            width: 200px; /* Устанавливаем ширину при открытии */
         }
 
         a {
@@ -59,7 +64,7 @@
             border: none;
             padding: 10px 20px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-bottom: 10px; /* Отступ снизу для кнопок */
         }
 
         .top-right {
@@ -111,15 +116,15 @@
 
         .toggle-btn {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 20px;
+            left: 10px; /* Перемещаем кнопку влево */
             background-color: #4f4f4f;
             color: #ffffff;
             border: none;
             padding: 10px;
             cursor: pointer;
             z-index: 3; /* Обеспечивает видимость кнопки поверх других элементов */
-            transition: top 0.3s ease;
+            transition: left 0.3s ease;
         }
 
         .gradient-text {
@@ -134,13 +139,13 @@
 
         @media (max-width: 600px) {
             nav {
-                left: 0;
-                height: 0;
-                transition: height 0.3s ease;
+                height: 100vh;
+                width: 0;
+                transition: width 0.3s ease;
             }
 
             .toggle-btn {
-                top: 0;
+                top: 20px;
             }
 
             header, main, .modal-content {
@@ -157,14 +162,12 @@
         function toggleNav() {
             var nav = document.querySelector('nav');
             var toggleBtn = document.querySelector('.toggle-btn');
-            if (nav.style.height === '0px' || nav.style.height === '') {
-                nav.style.height = '100vh';
-                toggleBtn.style.top = '100vh'; /* Перемещает кнопку вместе с навигацией */
-                toggleBtn.innerHTML = '&#9650;'; /* Изменяет стрелку на вверх */
+            if (nav.classList.contains('open')) {
+                nav.classList.remove('open');
+                toggleBtn.innerHTML = '&#9658;'; /* Изменяет стрелку на вправо */
             } else {
-                nav.style.height = '0';
-                toggleBtn.style.top = '0';
-                toggleBtn.innerHTML = '&#9660;'; /* Изменяет стрелку на вниз */
+                nav.classList.add('open');
+                toggleBtn.innerHTML = '&#9668;'; /* Изменяет стрелку на влево */
             }
         }
 
@@ -185,7 +188,7 @@
     </script>
 </head>
 <body>
-    <button class="toggle-btn" onclick="toggleNav()">&#9660;</button> <!-- Кнопка-стрелка -->
+    <button class="toggle-btn" onclick="toggleNav()">&#9658;</button> <!-- Кнопка-стрелка -->
     <nav>
         <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
         <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
