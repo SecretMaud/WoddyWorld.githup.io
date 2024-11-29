@@ -5,6 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Официальный сайт WoddyWorld</title>
     <style>
+        #chat {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background: rgba(79, 79, 79, 0.8);
+    margin-top: 20px; /* Отступ сверху */
+}
+
+#messageInput {
+    display: flex;
+    padding: 10px;
+    background: #4f4f4f;
+    margin-top: 10px; /* Отступ сверху */
+}
+
+#messageInput input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+}
+
+#messageInput button {
+    padding: 10px;
+    border: none;
+    background: #ffff00;
+    color: #000;
+    cursor: pointer;
+}
         body {
             background: linear-gradient(to bottom, #000000, #ffff00, #8b4513); /* Переход от черного к желтому и коричневому */
             font-family: Arial, sans-serif;
@@ -202,6 +230,7 @@
             }
         }
     </script>
+    <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
     <button class="toggle-btn" onclick="toggleNav()">&#9658;</button> <!-- Кнопка-стрелка -->
@@ -219,6 +248,12 @@
         <main>
             <p>Информация</p>
             <p>Добавьте сюда свой контент.</p>
+
+            <div id="chat"></div>
+            <div id="messageInput">
+                <input id="message" type="text" placeholder="Введите сообщение...">
+                <button onclick="sendMessage()">Отправить</button>
+            </div>
         </main>
     </div>
 
@@ -230,5 +265,52 @@
             </div>
         </div>
     </div>
+
+<script>
+    const socket = io();
+
+    function sendMessage() {
+        const message = document.getElementById('message').value;
+        socket.emit('chat message', message);
+        document.getElementById('message').value = '';
+    }
+
+    socket.on('chat message', function(msg) {
+        const chat = document.getElementById('chat');
+        const messageElement = document.createElement('div');
+        messageElement.textContent = msg;
+        chat.appendChild(messageElement);
+    });
+
+    function toggleNav() {
+        var nav = document.querySelector('nav');
+        var toggleBtn = document.querySelector('.toggle-btn');
+        if (nav.classList.contains('open')) {
+            nav.classList.remove('open');
+            toggleBtn.classList.remove('open');
+            toggleBtn.innerHTML = '&#9658;'; /* Изменяет стрелку на вправо */
+        } else {
+            nav.classList.add('open');
+            toggleBtn.classList.add('open');
+            toggleBtn.innerHTML = '&#9668;'; /* Изменяет стрелку на влево */
+        }
+    }
+
+    function toggleModal() {
+        var modal = document.getElementById('myModal');
+        if (modal.style.display === "block") {
+            modal.style.display = "none";
+        } else {
+            modal.style.display = "block";
+        }
+    }
+
+    window.onclick = function(event) {
+        if (event.target == document.getElementById('myModal')) {
+            toggleModal();
+        }
+    }
+</script>
+
 </body>
 </html>
