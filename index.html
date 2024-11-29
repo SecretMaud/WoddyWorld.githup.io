@@ -21,12 +21,12 @@
             flex-direction: column;
             justify-content: flex-start;
             width: 100%;
-            height: auto;
+            height: 0;
             position: fixed;
             top: 0;
-            left: -100%;
+            left: 0;
             z-index: 2; /* Обеспечивает видимость поверх другого контента */
-            transition: left 0.3s ease;
+            transition: height 0.3s ease;
         }
 
         a {
@@ -111,7 +111,7 @@
 
         .toggle-btn {
             position: fixed;
-            top: 20px;
+            top: 0;
             left: 0;
             background-color: #4f4f4f;
             color: #ffffff;
@@ -119,7 +119,7 @@
             padding: 10px;
             cursor: pointer;
             z-index: 3; /* Обеспечивает видимость кнопки поверх других элементов */
-            transition: left 0.3s ease;
+            transition: top 0.3s ease;
         }
 
         .gradient-text {
@@ -134,13 +134,13 @@
 
         @media (max-width: 600px) {
             nav {
-                left: -100%;
-                height: auto;
-                transition: left 0.3s ease;
+                left: 0;
+                height: 0;
+                transition: height 0.3s ease;
             }
 
             .toggle-btn {
-                left: 0;
+                top: 0;
             }
 
             header, main, .modal-content {
@@ -157,14 +157,14 @@
         function toggleNav() {
             var nav = document.querySelector('nav');
             var toggleBtn = document.querySelector('.toggle-btn');
-            if (nav.style.left === '-100%') {
-                nav.style.left = '0';
-                toggleBtn.style.left = '120px'; /* Перемещает кнопку вместе с навигацией */
-                toggleBtn.innerHTML = '&#9664;'; /* Изменяет стрелку на левую */
+            if (nav.style.height === '0px' || nav.style.height === '') {
+                nav.style.height = '100vh';
+                toggleBtn.style.top = '100vh'; /* Перемещает кнопку вместе с навигацией */
+                toggleBtn.innerHTML = '&#9650;'; /* Изменяет стрелку на вверх */
             } else {
-                nav.style.left = '-100%';
-                toggleBtn.style.left = '0';
-                toggleBtn.innerHTML = '&#9654;'; /* Изменяет стрелку на правую */
+                nav.style.height = '0';
+                toggleBtn.style.top = '0';
+                toggleBtn.innerHTML = '&#9660;'; /* Изменяет стрелку на вниз */
             }
         }
 
@@ -185,12 +185,12 @@
     </script>
 </head>
 <body>
-    <button class="toggle-btn" onclick="toggleNav()">&#9654;</button> <!-- Кнопка-стрелка -->
+    <button class="toggle-btn" onclick="toggleNav()">&#9660;</button> <!-- Кнопка-стрелка -->
     <nav>
         <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
         <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
-        <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></п>
-        <п><а href="https://woddyworld.easydonate.ru">Донаты</а></п>
+        <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></p>
+        <p><a href="https://woddyworld.easydonate.ru">Донаты</a></p>
         <button onclick="toggleModal()">Правила</button>
     </nav>
     <div class="content">
@@ -198,8 +198,8 @@
             <h1 class="gradient-text">Добро пожаловать на официальный сайт <span class="highlight">WoddyWorld</span>, мы так рады тебя видеть!</h1>
         </header>
         <main>
-            <п>Информация</п>
-            <п>Добавьте сюда свой контент.</п>
+            <p>Информация</p>
+            <p>Добавьте сюда свой контент.</p>
             <img src="Long.png" alt="Long.png" class="top-right">
         </main>
     </div>
