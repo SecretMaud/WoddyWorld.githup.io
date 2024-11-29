@@ -17,21 +17,20 @@
             background-color: #4f4f4f;
             padding: 10px;
             text-align: left;
-            display: flex;
+            display: none; /* Скрываем навигационное окно */
             flex-direction: column;
             justify-content: flex-start;
-            width: 0;
+            width: 200px; /* Устанавливаем ширину при открытии */
             height: 100vh;
-            overflow: hidden; /* Скрываем содержимое при закрытом меню */
             position: fixed;
             top: 0;
             left: 0;
             z-index: 2; /* Обеспечивает видимость поверх другого контента */
-            transition: width 0.3s ease;
+            overflow-y: auto; /* Скроллинг по вертикали */
         }
 
         nav.open {
-            width: 200px; /* Устанавливаем ширину при открытии */
+            display: flex; /* Показываем окно навигации при открытии */
         }
 
         a {
@@ -124,7 +123,6 @@
             padding: 10px;
             cursor: pointer;
             z-index: 3; /* Обеспечивает видимость кнопки поверх других элементов */
-            transition: left 0.3s ease;
         }
 
         .gradient-text {
@@ -139,9 +137,8 @@
 
         @media (max-width: 600px) {
             nav {
+                width: 200px;
                 height: 100vh;
-                width: 0;
-                transition: width 0.3s ease;
             }
 
             .toggle-btn {
@@ -192,8 +189,8 @@
     <nav>
         <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
         <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
-        <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></p>
-        <p><a href="https://woddyworld.easydonate.ru">Донаты</a></p>
+        <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></п>
+        <п><а href="https://woddyworld.easydonate.ru">Донаты</а></п>
         <button onclick="toggleModal()">Правила</button>
     </nav>
     <div class="content">
@@ -201,8 +198,8 @@
             <h1 class="gradient-text">Добро пожаловать на официальный сайт <span class="highlight">WoddyWorld</span>, мы так рады тебя видеть!</h1>
         </header>
         <main>
-            <p>Информация</p>
-            <p>Добавьте сюда свой контент.</p>
+            <п>Информация</п>
+            <п>Добавьте сюда свой контент.</п>
             <img src="Long.png" alt="Long.png" class="top-right">
         </main>
     </div>
