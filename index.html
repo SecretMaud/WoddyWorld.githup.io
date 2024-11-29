@@ -169,8 +169,19 @@
         #chat-messages {
             flex-grow: 1;
             overflow-y: auto;
-            padding: 20px;
+            padding: 10px;
             height: 80%; /* Высота сообщений в окне чата */
+            background-color: #333; /* Фон сообщений */
+            border-top: 1px solid #4f4f4f; /* Верхняя граница */
+            border-bottom: 1px solid #4f4f4f; /* Нижняя граница */
+        }
+
+        #chat-messages div {
+            margin: 5px 0; /* Отступы между сообщениями */
+            padding: 5px;
+            border-radius: 5px;
+            background: #4f4f4f; /* Цвет фона сообщений */
+            color: #fff; /* Цвет текста сообщений */
         }
 
         #messageInput {
@@ -196,7 +207,7 @@
     <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-    <button class="toggle-btn" onclick="toggleNav()">&#9658;</button> <!-- Кнопка-стрелка -->
+  <button class="toggle-btn" onclick="toggleNav()">&#9658;</button> <!-- Кнопка-стрелка -->
     <nav>
         <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
         <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
