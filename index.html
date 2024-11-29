@@ -100,14 +100,14 @@
             color: #aaaaaa;
             float: right;
             font-size: 28px;
-            font-weight: bold.
+            font-weight: bold;
         }
 
         .close:hover,
         .close:focus {
             color: #000;
             text-decoration: none;
-            cursor: pointer.
+            cursor: pointer;
         }
 
         .toggle-btn {
@@ -115,9 +115,9 @@
             top: 20px;
             left: 0;
             background-color: #4f4f4f;
-            color: #ffffff.
+            color: #ffffff;
             border: none;
-            padding: 10px.
+            padding: 10px;
             cursor: pointer;
             z-index: 3; /* Обеспечивает видимость кнопки поверх других элементов */
             transition: left 0.3s ease;
@@ -126,19 +126,19 @@
         /* Медиазапросы для адаптивного дизайна */
         @media (max-width: 600px) {
             nav {
-                width: 100%.
-                height: auto.
+                width: 100%;
+                height: auto;
                 position: relative;
-                left: 0.
+                left: 0;
             }
 
             .toggle-btn {
-                left: 0.
+                left: 0;
             }
 
             header, main, .modal-content {
-                width: 100%.
-                padding: 10px.
+                width: 100%;
+                padding: 10px;
             }
 
             .top-right {
@@ -151,27 +151,27 @@
             var nav = document.querySelector('nav');
             var toggleBtn = document.querySelector('.toggle-btn');
             if (nav.style.left === '-160px') {
-                nav.style.left = '0'.
+                nav.style.left = '0';
                 toggleBtn.style.left = '120px'; /* Перемещает кнопку вместе с навигацией */
                 toggleBtn.innerHTML = '&#9664;'; /* Изменяет стрелку на левую */
             } else {
-                nav.style.left = '-160px'.
+                nav.style.left = '-160px';
                 toggleBtn.style.left = '0';
                 toggleBtn.innerHTML = '&#9654;'; /* Изменяет стрелку на правую */
             }
         }
 
         function showModal() {
-            document.getElementById('myModal').style.display = "block".
+            document.getElementById('myModal').style.display = "block";
         }
 
         function closeModal() {
-            document.getElementById('myModal').style.display = "none".
+            document.getElementById('myModal').style.display = "none";
         }
 
         window.onclick = function(event) {
             if (event.target == document.getElementById('myModal')) {
-                closeModal().
+                closeModal();
             }
         }
     </script>
