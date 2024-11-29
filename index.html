@@ -5,34 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Официальный сайт WoddyWorld</title>
     <style>
-        #chat {
-    flex-grow: 1;
-    overflow-y: auto;
-    padding: 20px;
-    background: rgba(79, 79, 79, 0.8);
-    margin-top: 20px; /* Отступ сверху */
-}
-
-#messageInput {
-    display: flex;
-    padding: 10px;
-    background: #4f4f4f;
-    margin-top: 10px; /* Отступ сверху */
-}
-
-#messageInput input {
-    flex-grow: 1;
-    padding: 10px;
-    border: none;
-}
-
-#messageInput button {
-    padding: 10px;
-    border: none;
-    background: #ffff00;
-    color: #000;
-    cursor: pointer;
-}
         body {
             background: linear-gradient(to bottom, #000000, #ffff00, #8b4513); /* Переход от черного к желтому и коричневому */
             font-family: Arial, sans-serif;
@@ -70,7 +42,6 @@
             text-decoration: none; /* Удалить подчеркивание */
             margin-bottom: 10px; /* Добавим отступ снизу */
         }
-
         .content {
             flex-grow: 1;
             padding: 20px;
@@ -136,7 +107,6 @@
             text-decoration: none;
             cursor: pointer;
         }
-
         .toggle-btn {
             position: fixed;
             top: 20px;
@@ -164,43 +134,126 @@
             color: #ffffff; /* Белый цвет для слова "WoddyWorld" */
         }
 
-        @media (max-width: 600px) {
-            nav {
-                width: 200px;
-                height: 100vh;
-            }
+        #chat-container {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
 
-            .toggle-btn {
-                top: 20px;
-                left: 0;
-            }
+        #toggle-chat {
+            background-color: #4f4f4f;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
 
-            .toggle-btn.open {
-                transform: translateX(200px); /* Двигаем кнопку вместе с меню */
-            }
+        .chat-box {
+            display: none;
+            background: rgba(79, 79, 79, 0.8);
+            width: 300px; /* Размер окна чата */
+            height: 300px; /* Размер окна чата */
+            border-radius: 5px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            margin-top: 10px; /* Отступ сверху */
+        }
 
-            header {
-                padding: 10px;
-                text-align: center;
-                margin: 0 auto; /* Центрирование блока */
-            }
+        #chat-messages {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding: 20px;
+            height: 80%; /* Высота сообщений в окне чата */
+        }
 
-            header h1 {
-                font-size: 1.5em; /* Уменьшаем размер текста для мобильных устройств */
-            }
+        #messageInput {
+            display: flex;
+            padding: 10px;
+            background: #4f4f4f;
+        }
 
-            main {
-                width: 90%;
-                padding: 20px; /* Уменьшение отступов для мобильных устройств */
-            }
+        #messageInput input {
+            flex-grow: 1;
+            padding: 10px;
+            border: none;
+        }
 
-            .modal-content {
-                width: 90%;
-                padding: 10px;
-            }
+        #messageInput button {
+            padding: 10px;
+            border: none;
+            background: #ffff00;
+            color: #000;
+            cursor: pointer;
         }
     </style>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <button class="toggle-btn" onclick="toggleNav()">&#9658;</button> <!-- Кнопка-стрелка -->
+    <nav>
+        <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
+        <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
+        <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></p>
+        <p><a href="https://woddyworld.easydonate.ru">Донаты</a></p>
+        <button onclick="toggleModal()">Правила</button>
+    </nav>
+    <div class="content">
+        <header>
+            <h1 class="gradient-text">Добро пожаловать на официальный сайт <span class="highlight">WoddyWorld</span>, мы так рады тебя видеть!</h1>
+        </header>
+        <main>
+            <p>Информация</p>
+            <p>Добавьте сюда свой контент.</p>
+
+            <div id="chat-container" class="chat-container">
+                <button id="toggle-chat" onclick="toggleChat()">Чат</button>
+                <div id="chat" class="chat-box">
+                    <div id="chat-messages"></div>
+                    <div id="messageInput">
+                        <input id="message" type="text" placeholder="Введите сообщение...">
+                        <button onclick="sendMessage()">Отправить</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleModal()">&times;</span>
+            <div class="rules">
+            </div>
+        </div>
+    </div>
+
     <script>
+        const socket = io();
+
+        function sendMessage() {
+            const message = document.getElementById('message').value;
+            socket.emit('chat message', message);
+            document.getElementById('message').value = '';
+        }
+
+        socket.on('chat message', function(msg) {
+            const chatMessages = document.getElementById('chat-messages');
+            const messageElement = document.createElement('div');
+            messageElement.textContent = msg;
+            chatMessages.appendChild(messageElement);
+        });
+
+        function toggleChat() {
+            const chatBox = document.getElementById('chat');
+            if (chatBox.style.display === 'none' || chatBox.style.display === '') {
+                chatBox.style.display = 'block';
+            } else {
+                chatBox.style.display = 'none';
+            }
+        }
+
         function toggleNav() {
             var nav = document.querySelector('nav');
             var toggleBtn = document.querySelector('.toggle-btn');
@@ -230,87 +283,5 @@
             }
         }
     </script>
-    <script src="/socket.io/socket.io.js"></script>
-</head>
-<body>
-    <button class="toggle-btn" onclick="toggleNav()">&#9658;</button> <!-- Кнопка-стрелка -->
-    <nav>
-        <p><a href="https://t.me/woddyWorldOfficial">Наш Телеграм</a></p>
-        <p><a href="https://vk.com/mcwoddyworld">Наша группа ВК</a></p>
-        <p><a href="https://discord.gg/TKTTHKRn">Наш Дискорд</a></p>
-        <p><a href="https://woddyworld.easydonate.ru">Донаты</a></p>
-        <button onclick="toggleModal()">Правила</button>
-    </nav>
-    <div class="content">
-        <header>
-            <h1 class="gradient-text">Добро пожаловать на официальный сайт <span class="highlight">WoddyWorld</span>, мы так рады тебя видеть!</h1>
-        </header>
-        <main>
-            <p>Информация</p>
-            <p>Добавьте сюда свой контент.</p>
-
-            <div id="chat"></div>
-            <div id="messageInput">
-                <input id="message" type="text" placeholder="Введите сообщение...">
-                <button onclick="sendMessage()">Отправить</button>
-            </div>
-        </main>
-    </div>
-
-    <!-- Модальное окно -->
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="toggleModal()">&times;</span>
-            <div class="rules">
-            </div>
-        </div>
-    </div>
-
-<script>
-    const socket = io();
-
-    function sendMessage() {
-        const message = document.getElementById('message').value;
-        socket.emit('chat message', message);
-        document.getElementById('message').value = '';
-    }
-
-    socket.on('chat message', function(msg) {
-        const chat = document.getElementById('chat');
-        const messageElement = document.createElement('div');
-        messageElement.textContent = msg;
-        chat.appendChild(messageElement);
-    });
-
-    function toggleNav() {
-        var nav = document.querySelector('nav');
-        var toggleBtn = document.querySelector('.toggle-btn');
-        if (nav.classList.contains('open')) {
-            nav.classList.remove('open');
-            toggleBtn.classList.remove('open');
-            toggleBtn.innerHTML = '&#9658;'; /* Изменяет стрелку на вправо */
-        } else {
-            nav.classList.add('open');
-            toggleBtn.classList.add('open');
-            toggleBtn.innerHTML = '&#9668;'; /* Изменяет стрелку на влево */
-        }
-    }
-
-    function toggleModal() {
-        var modal = document.getElementById('myModal');
-        if (modal.style.display === "block") {
-            modal.style.display = "none";
-        } else {
-            modal.style.display = "block";
-        }
-    }
-
-    window.onclick = function(event) {
-        if (event.target == document.getElementById('myModal')) {
-            toggleModal();
-        }
-    }
-</script>
-
 </body>
 </html>
